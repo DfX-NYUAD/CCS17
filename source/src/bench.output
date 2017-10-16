@@ -1,0 +1,243 @@
+Grammar
+
+    0 $accept: STATEMENTS $end
+
+    1 STATEMENTS: STATEMENTS STATEMENT
+    2           | %empty
+
+    3 STATEMENT: INPUT_DECL
+    4          | OUTPUT_DECL
+    5          | GATE_DECL
+
+    6 INPUT_DECL: INPUT LPAREN ID RPAREN
+
+    7 OUTPUT_DECL: OUTPUT LPAREN ID RPAREN
+
+    8 GATE_DECL: ID EQUALS ID LPAREN GATE_INPUTS RPAREN
+
+    9 GATE_INPUTS: ID
+   10            | GATE_INPUTS COMMA ID
+
+
+Terminals, with rules where they appear
+
+$end (0) 0
+error (256)
+INPUT (258) 6
+OUTPUT (259) 7
+LPAREN (260) 6 7 8
+RPAREN (261) 6 7 8
+COMMA (262) 10
+EQUALS (263) 8
+ID (264) 6 7 8 9 10
+
+
+Nonterminals, with rules where they appear
+
+$accept (10)
+    on left: 0
+STATEMENTS (11)
+    on left: 1 2, on right: 0 1
+STATEMENT (12)
+    on left: 3 4 5, on right: 1
+INPUT_DECL (13)
+    on left: 6, on right: 3
+OUTPUT_DECL (14)
+    on left: 7, on right: 4
+GATE_DECL (15)
+    on left: 8, on right: 5
+GATE_INPUTS (16)
+    on left: 9 10, on right: 8 10
+
+
+State 0
+
+    0 $accept: . STATEMENTS $end
+    1 STATEMENTS: . STATEMENTS STATEMENT
+    2           | . %empty
+
+    $default  reduce using rule 2 (STATEMENTS)
+
+    STATEMENTS  go to state 1
+
+
+State 1
+
+    0 $accept: STATEMENTS . $end
+    1 STATEMENTS: STATEMENTS . STATEMENT
+    3 STATEMENT: . INPUT_DECL
+    4          | . OUTPUT_DECL
+    5          | . GATE_DECL
+    6 INPUT_DECL: . INPUT LPAREN ID RPAREN
+    7 OUTPUT_DECL: . OUTPUT LPAREN ID RPAREN
+    8 GATE_DECL: . ID EQUALS ID LPAREN GATE_INPUTS RPAREN
+
+    $end    shift, and go to state 2
+    INPUT   shift, and go to state 3
+    OUTPUT  shift, and go to state 4
+    ID      shift, and go to state 5
+
+    STATEMENT    go to state 6
+    INPUT_DECL   go to state 7
+    OUTPUT_DECL  go to state 8
+    GATE_DECL    go to state 9
+
+
+State 2
+
+    0 $accept: STATEMENTS $end .
+
+    $default  accept
+
+
+State 3
+
+    6 INPUT_DECL: INPUT . LPAREN ID RPAREN
+
+    LPAREN  shift, and go to state 10
+
+
+State 4
+
+    7 OUTPUT_DECL: OUTPUT . LPAREN ID RPAREN
+
+    LPAREN  shift, and go to state 11
+
+
+State 5
+
+    8 GATE_DECL: ID . EQUALS ID LPAREN GATE_INPUTS RPAREN
+
+    EQUALS  shift, and go to state 12
+
+
+State 6
+
+    1 STATEMENTS: STATEMENTS STATEMENT .
+
+    $default  reduce using rule 1 (STATEMENTS)
+
+
+State 7
+
+    3 STATEMENT: INPUT_DECL .
+
+    $default  reduce using rule 3 (STATEMENT)
+
+
+State 8
+
+    4 STATEMENT: OUTPUT_DECL .
+
+    $default  reduce using rule 4 (STATEMENT)
+
+
+State 9
+
+    5 STATEMENT: GATE_DECL .
+
+    $default  reduce using rule 5 (STATEMENT)
+
+
+State 10
+
+    6 INPUT_DECL: INPUT LPAREN . ID RPAREN
+
+    ID  shift, and go to state 13
+
+
+State 11
+
+    7 OUTPUT_DECL: OUTPUT LPAREN . ID RPAREN
+
+    ID  shift, and go to state 14
+
+
+State 12
+
+    8 GATE_DECL: ID EQUALS . ID LPAREN GATE_INPUTS RPAREN
+
+    ID  shift, and go to state 15
+
+
+State 13
+
+    6 INPUT_DECL: INPUT LPAREN ID . RPAREN
+
+    RPAREN  shift, and go to state 16
+
+
+State 14
+
+    7 OUTPUT_DECL: OUTPUT LPAREN ID . RPAREN
+
+    RPAREN  shift, and go to state 17
+
+
+State 15
+
+    8 GATE_DECL: ID EQUALS ID . LPAREN GATE_INPUTS RPAREN
+
+    LPAREN  shift, and go to state 18
+
+
+State 16
+
+    6 INPUT_DECL: INPUT LPAREN ID RPAREN .
+
+    $default  reduce using rule 6 (INPUT_DECL)
+
+
+State 17
+
+    7 OUTPUT_DECL: OUTPUT LPAREN ID RPAREN .
+
+    $default  reduce using rule 7 (OUTPUT_DECL)
+
+
+State 18
+
+    8 GATE_DECL: ID EQUALS ID LPAREN . GATE_INPUTS RPAREN
+    9 GATE_INPUTS: . ID
+   10            | . GATE_INPUTS COMMA ID
+
+    ID  shift, and go to state 19
+
+    GATE_INPUTS  go to state 20
+
+
+State 19
+
+    9 GATE_INPUTS: ID .
+
+    $default  reduce using rule 9 (GATE_INPUTS)
+
+
+State 20
+
+    8 GATE_DECL: ID EQUALS ID LPAREN GATE_INPUTS . RPAREN
+   10 GATE_INPUTS: GATE_INPUTS . COMMA ID
+
+    RPAREN  shift, and go to state 21
+    COMMA   shift, and go to state 22
+
+
+State 21
+
+    8 GATE_DECL: ID EQUALS ID LPAREN GATE_INPUTS RPAREN .
+
+    $default  reduce using rule 8 (GATE_DECL)
+
+
+State 22
+
+   10 GATE_INPUTS: GATE_INPUTS COMMA . ID
+
+    ID  shift, and go to state 23
+
+
+State 23
+
+   10 GATE_INPUTS: GATE_INPUTS COMMA ID .
+
+    $default  reduce using rule 10 (GATE_INPUTS)

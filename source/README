@@ -1,0 +1,6 @@
+Detailed compilation instructions are forthcoming.
+
+The short version is that you need to build the dependencies: CUDD, MiniSAT,
+CryptoMinisat and lingeling first. And then use the makefile in the source
+directory. You will need to have IBM CPLEX installed.
+

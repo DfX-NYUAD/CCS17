@@ -14,11 +14,11 @@ Here empty.bench is an empty (or dummy) file with only one comment line. This fi
 
 Installation
 ==============
-To install the SAT attack tool, follow the instructions provided in README-OLD.txt (authored by Pramod et al.)
-We have provided attack executables (names starting with sld) in /bin directory for 64-bit (default) and 32-bit Ubuntu. 
+To install the SAT attack tool, follow the instructions provided in source/README.md.
+We have provided attack executables (names starting with sld) in /bin directory for 64-bit (default) and 32-bit Ubuntu 17.04 . 
 
-The 32-bit DfX  (oracle) executable is by default placed in /source/src directory. Executables compiled for multiple linux platforms are also placed in /bin directory. 
-The DfX executable(s) has(have) been generated using Verilator tool from Veripool. In case observe some errors during execution of DfX executable, it might be helpful to install the tool available at: http://www.veripool.org/wiki/verilator
+The 32-bit DfX  (oracle) executable is by default placed in /source/src directory. Executables compiled for Ubuntu and RedHat linux platforms are also placed in /bin directory. 
+The DfX executable(s) has(have) been generated using Verilator tool from Veripool. For correct execution of DfX executable, you also need to install the tool available at: http://www.veripool.org/wiki/verilator
 
 
 Minor Modifications:

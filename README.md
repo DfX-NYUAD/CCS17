@@ -8,6 +8,7 @@ Our version also requires a locked netlist, same as its predecessor. We provide 
 In a nutshell, we have modified only the interface to the decryption tool wrt to Subramanyan’s version; the rest of the tool is, more or less, identical. 
 
 To launch the attack on the SFLL-HD netlist, please use the following command in /source/src directory:
+
 ./sld ../../benchmarks/sfll_hd/dfx_sfll_k256_h32.bench ../../benchmarks/original/empty.bench
 Here empty.bench is an empty (or dummy) file with only one comment line. This file serves to keep the attack interface intact for users already familiar with the SAT attack framework. 
 

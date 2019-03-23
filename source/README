@@ -10,25 +10,44 @@ directory.
 
 You will also need to install Verilator. 
 
-------------------------------
-For cmsat-2.9.9
-$  cd build
-$  ../configure
-$  make
--------------------------------
-For cudd-2.5.0
-$  makecd obj/
-$  make
--------------------------------
-For lingeling 
-$  ./configure.sh && make 
--------------------------------
-For minisat 
-$  cd minisat/
-$  export MROOT=`pwd`
-$  cd core/
-$  make libr
--------------------------------
-In source/src
-make 
--------------------------------
+Begin by obtaining Ubuntu. You will need to download some support software. In Terminal enter:
+sudo apt-get update
+sudo apt-get install flex
+sudo apt-get install bison
+sudo apt-get install gcc
+sudo apt-get install g++
+sudo apt-get install libboost-all-dev
+
+For Verilator download the tarball from https://www.veripool.org/projects/verilator/wiki/Installing
+and follow its installation instructions.
+
+Download the SAT attack code from
+https://github.com/DfX-NYUAD/CCS17
+Unzip it. The unzipped folder should be called CCS17-master. It will not compile if it has a different name. For example, downloading it twice may cause the folder name to change to avoid name collisions. If it is not called CCS17-master rename it to that.
+We need the .o file to be compiled to build the dependencies. Cmsat and minisat are the SAT solvers. CUDD and lingeling are decision makers. To build their dependencies:
+
+Open Terminal
+Change directories to the folder of the code you downloaded
+Type:
+cd cmsat-2.9.9/build
+../configure
+make
+
+cd ../../cudd-2.5.0/obj
+make
+
+cd ../../lingeling
+./configure.sh && make
+
+cd ../minisat
+export MROOT=’path address of minisat folder’
+cd core/
+make libr
+
+Then we can compile the program by simply move to the source/src folder in Terminal and typing:
+make
+
+However, there is a bug in the source code. After the last make an error with yylex and libfl.so may occur. If so, open in your favored text editor the makefile, which is found under the /source/src directory. Find the line:
+LIBS= -lz -lfl  -lgomp ${LGLLIBFLAGS}
+Replace -lfl with the full path address of libfl.a, which should be in the same folder as that written in the error message for libfl.so.
+Then type make again under terminal and it should compile.

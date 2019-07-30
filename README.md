@@ -1,3 +1,5 @@
+
+
 SFLL Attack Framework
 =============================
 This is a logic decryption tool  developed as a wrapper code around the SAT attack tool that was originally developed by Pramod Subramanyan et al.
@@ -31,3 +33,8 @@ We have made the following changes to the initial code.
 3. The modified tool does not support partial attacks, as we have removed the parts of the code that require IBM CPLEX.  
 4. We have removed all previous benchmarks. The updated benchmark folder only contains SFLL-HD netlist.  
 
+Update: 
+========================================
+SFLL-HD has been broken using structural analysis attacks. For further details, refer to: https://ieeexplore.ieee.org/document/8666809
+
+You may try your luck on the new logic locking technique, referred to as SFLL-fault, available at: https://github.com/micky960/SFLL_fault. 
